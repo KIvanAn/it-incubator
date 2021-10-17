@@ -1,0 +1,10 @@
+.content {
+	grid-area: content;
+	background-color: darkgrey;
+  }
+  .content img {
+	width: 100%;
+  }
+  .item a {
+	  color: greenyellow;
+  }
