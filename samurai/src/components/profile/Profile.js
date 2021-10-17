@@ -1,3 +1,4 @@
+import Posts from './posts/Posts'
 import classes from './Profile.module.css'
 
 const Profile = () => {
@@ -10,15 +11,7 @@ const Profile = () => {
 				<img src="https://pbs.twimg.com/media/E83TZzNWYAEFE9C.jpg" />
 				<div>description</div>
 			</div>
-			<div>
-				My posts
-				<div>New posts</div>
-				<div>
-					<div className={classes.item}><a href="#">Post 1</a></div>
-					<div className={classes.item}><a href="#">Post 2</a></div>
-					<div className={classes.item}><a href="#">Post 3</a></div>
-				</div>
-			</div>
+			<Posts />
 		</div>
 	)
 }

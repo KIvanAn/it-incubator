@@ -1,0 +1,9 @@
+.item a {
+	color: greenyellow;
+}
+
+.item .avatar {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
