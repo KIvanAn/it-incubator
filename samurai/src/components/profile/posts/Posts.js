@@ -10,10 +10,10 @@ const Posts = () => {
 				<buuton>Add post</buuton>
 			</div>
 			<div>
-				<Post />
-				<Post />
-				<Post />
-				<Post />
+				<Post title="Post 1" likesCount="20" />
+				<Post title="Post 2" likesCount="40" />
+				<Post title="Post 3" likesCount="100" />
+				<Post title="Post 4" likesCount="12" />
 			</div>
 		</div>
 	)
