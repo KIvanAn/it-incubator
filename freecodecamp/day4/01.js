@@ -86,3 +86,21 @@ var myArray = [["John", 23], ["dog", 3]];
 
 // Only change code below this line
 var removedFromMyArray = myArray.shift();
+// Setup
+var myArray = [["John", 23], ["dog", 3]];
+myArray.shift();
+
+// Only change code below this line
+myArray.unshift(["Paul",35])
+var myList = [
+    ["Chocolate", 15],
+    ["Milk", 1],
+    ["Bread", 5],
+    ["Banana", 16],
+    ["Coca cola", 20]
+];
+
+function reusableFunction() {
+    console.log("Hi World");
+}
+reusableFunction()
