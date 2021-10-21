@@ -1,3 +1,5 @@
+import {renderDom} from '../render'
+
 let state = {
     profilePage: {
         posts: [
@@ -6,6 +8,7 @@ let state = {
             {id: 3, title: 'Post 3', likesCount: 204},
             {id: 4, title: 'Post 4', likesCount: 2000},
         ],
+        newPostValue: 'it-kamasutra',
     },
     dialogsPage: {
         dialogs: [
@@ -28,6 +31,26 @@ let state = {
             },
         ],
     },
+}
+
+export let addPost = () => {
+    let id = state.profilePage.posts[state.profilePage.posts.length - 1].id
+    let newPost = {
+        id: id + 1,
+        title: state.profilePage.newPostValue,
+        likesCount: 0,
+    }
+
+    state.profilePage.newPostValue = ''
+    state.profilePage.posts.push(newPost)
+
+    renderDom(state)
+}
+
+export let updateNewPostValue = (value) => {
+    state.profilePage.newPostValue = value
+
+    renderDom(state)
 }
 
 export default state
