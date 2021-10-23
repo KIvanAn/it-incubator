@@ -1,4 +1,6 @@
-import {renderDom} from '../render'
+let renderDom = () => {
+    console.log('Changed')
+}
 
 let state = {
     profilePage: {
@@ -33,7 +35,7 @@ let state = {
     },
 }
 
-export let addPost = () => {
+export const addPost = () => {
     let id = state.profilePage.posts[state.profilePage.posts.length - 1].id
     let newPost = {
         id: id + 1,
@@ -47,10 +49,14 @@ export let addPost = () => {
     renderDom(state)
 }
 
-export let updateNewPostValue = (value) => {
+export const updateNewPostValue = (value) => {
     state.profilePage.newPostValue = value
 
     renderDom(state)
+}
+
+export const subscrube = (observer) => {
+    renderDom = observer
 }
 
 export default state
