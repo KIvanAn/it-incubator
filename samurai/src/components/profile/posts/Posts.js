@@ -1,7 +1,7 @@
 import React from 'react'
 import Post from './post/Post'
 import classes from './Posts.module.css'
-import {updateNewPostValue} from "../../../redux/state";
+// import {updateNewPostValue} from "../../../redux/state";
 
 const Posts = (props) => {
     const postsElements = props.posts.map((post, i) => <Post id={post.id} title={post.title}
