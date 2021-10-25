@@ -9,11 +9,16 @@ const Posts = (props) => {
                                                              key={i}/>)
     let newPost = React.createRef()
     let addPost = () => {
-        props.addPost()
+        const action = {type: 'ADD-POST'}
+        props.dispatch(action)
     }
 
     let updateNewPostValue = () => {
-        props.updateNewPostValue(newPost.current.value)
+        const action = {
+            type: 'UPDATE-NEW-POST-VALUE',
+            value: newPost.current.value,
+        }
+        props.dispatch(action)
     }
 
     return (

@@ -31,33 +31,33 @@ let store = {
             ],
         },
     },
-    getState () {
-        return this._state
-    },
-    _callSubscriber () {
+    _callSubscriber() {
         console.log('State changed')
     },
-    addPost () {
-        let id = this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id
-        let newPost = {
-            id: id + 1,
-            title: this._state.profilePage.newPostValue,
-            likesCount: 0,
-        }
-
-        this._state.profilePage.newPostValue = ''
-        this._state.profilePage.posts.push(newPost)
-
-        this._callSubscriber(this._state)
+    getState() {
+        return this._state
     },
-    updateNewPostValue (value) {
-        this._state.profilePage.newPostValue = value
-
-        this._callSubscriber(this._state)
-    },
-    subscrube (observer) {
+    subscrube(observer) {
         this._callSubscriber = observer
     },
+    dispatch(action) {
+        if (action.type === 'ADD-POST') {
+            let id = this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id
+            let newPost = {
+                id: id + 1,
+                title: this._state.profilePage.newPostValue,
+                likesCount: 0,
+            }
+
+            this._state.profilePage.newPostValue = ''
+            this._state.profilePage.posts.push(newPost)
+
+            this._callSubscriber(this._state)
+        } else if (action.type === 'UPDATE-NEW-POST-VALUE') {
+            this._state.profilePage.newPostValue = action.value
+            this._callSubscriber(this._state)
+        }
+    }
 }
 
 export default store
