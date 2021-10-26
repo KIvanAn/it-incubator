@@ -1,3 +1,6 @@
+const ADD_POST = 'ADD-POST'
+const UPDATE_NEW_POST_VALUE = 'UPDATE-NEW-POST-VALUE'
+
 let store = {
     _state: {
         profilePage: {
@@ -41,7 +44,7 @@ let store = {
         this._callSubscriber = observer
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             let id = this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id
             let newPost = {
                 id: id + 1,
@@ -53,10 +56,19 @@ let store = {
             this._state.profilePage.posts.push(newPost)
 
             this._callSubscriber(this._state)
-        } else if (action.type === 'UPDATE-NEW-POST-VALUE') {
+        } else if (action.type === UPDATE_NEW_POST_VALUE) {
             this._state.profilePage.newPostValue = action.value
             this._callSubscriber(this._state)
         }
+    }
+}
+
+export const addPostActionCreator = () => ({type: ADD_POST})
+
+export const updateNewPostValueActionCreator = (newPost) => {
+    return {
+        type: UPDATE_NEW_POST_VALUE,
+        value: newPost.current.value,
     }
 }
 
