@@ -1,5 +1,7 @@
 const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_VALUE = 'UPDATE-NEW-POST-VALUE'
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
+const SEND_MESSAGE = 'SEND-MESSAGE'
 
 let store = {
     _state: {
@@ -32,6 +34,7 @@ let store = {
                     message: 'Bob Lorem Ipsum is simply dummy text of the printing and typesetting.',
                 },
             ],
+            newMessageText: '',
         },
     },
     _callSubscriber() {
@@ -59,6 +62,20 @@ let store = {
         } else if (action.type === UPDATE_NEW_POST_VALUE) {
             this._state.profilePage.newPostValue = action.value
             this._callSubscriber(this._state)
+        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
+            this._state.dialogsPage.newMessageText = action.value
+            this._callSubscriber(this._state)
+        } else if (action.type === SEND_MESSAGE) {
+            let id = this._state.dialogsPage.messages[this._state.dialogsPage.messages.length - 1].id
+            let newMessage = {
+                id: id + 1,
+                message: this._state.dialogsPage.newMessageText,
+            }
+
+            this._state.dialogsPage.newMessageText = ''
+            this._state.dialogsPage.messages.push(newMessage)
+
+            this._callSubscriber(this._state)
         }
     }
 }
@@ -69,6 +86,15 @@ export const updateNewPostValueActionCreator = (newPost) => {
     return {
         type: UPDATE_NEW_POST_VALUE,
         value: newPost.current.value,
+    }
+}
+
+export const sendMessageActionCreator = () => ({type: SEND_MESSAGE})
+
+export const updateNewMessageTextActionCreator = (newMessage) => {
+    return {
+        type: UPDATE_NEW_MESSAGE_TEXT,
+        value: newMessage,
     }
 }
 
