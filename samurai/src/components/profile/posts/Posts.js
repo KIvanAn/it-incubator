@@ -1,7 +1,7 @@
 import React from 'react'
 import Post from './post/Post'
 import classes from './Posts.module.css'
-import {addPostActionCreator, updateNewPostValueActionCreator} from '../../../redux/state'
+import {addPostActionCreator, updateNewPostValueActionCreator} from '../../../redux/profile-reducer'
 
 const Posts = (props) => {
     const postsElements = props.posts.map((post, i) => <Post id={post.id} title={post.title}

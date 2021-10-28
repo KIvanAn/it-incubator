@@ -1,7 +1,6 @@
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_VALUE = 'UPDATE-NEW-POST-VALUE'
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT'
-const SEND_MESSAGE = 'SEND-MESSAGE'
+import profileReducer from './profile-reducer'
+import dialogsReducer from './dialogs-reducer'
+import sidebarReducer from "./sidebar-reducer";
 
 let store = {
     _state: {
@@ -36,6 +35,7 @@ let store = {
             ],
             newMessageText: '',
         },
+        sidebar: {},
     },
     _callSubscriber() {
         console.log('State changed')
@@ -47,54 +47,11 @@ let store = {
         this._callSubscriber = observer
     },
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            let id = this._state.profilePage.posts[this._state.profilePage.posts.length - 1].id
-            let newPost = {
-                id: id + 1,
-                title: this._state.profilePage.newPostValue,
-                likesCount: 0,
-            }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
 
-            this._state.profilePage.newPostValue = ''
-            this._state.profilePage.posts.push(newPost)
-
-            this._callSubscriber(this._state)
-        } else if (action.type === UPDATE_NEW_POST_VALUE) {
-            this._state.profilePage.newPostValue = action.value
-            this._callSubscriber(this._state)
-        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT) {
-            this._state.dialogsPage.newMessageText = action.value
-            this._callSubscriber(this._state)
-        } else if (action.type === SEND_MESSAGE) {
-            let id = this._state.dialogsPage.messages[this._state.dialogsPage.messages.length - 1].id
-            let newMessage = {
-                id: id + 1,
-                message: this._state.dialogsPage.newMessageText,
-            }
-
-            this._state.dialogsPage.newMessageText = ''
-            this._state.dialogsPage.messages.push(newMessage)
-
-            this._callSubscriber(this._state)
-        }
-    }
-}
-
-export const addPostActionCreator = () => ({type: ADD_POST})
-
-export const updateNewPostValueActionCreator = (newPost) => {
-    return {
-        type: UPDATE_NEW_POST_VALUE,
-        value: newPost.current.value,
-    }
-}
-
-export const sendMessageActionCreator = () => ({type: SEND_MESSAGE})
-
-export const updateNewMessageTextActionCreator = (newMessage) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_TEXT,
-        value: newMessage,
+        this._callSubscriber(this._state)
     }
 }
 
