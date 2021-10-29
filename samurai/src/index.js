@@ -1,6 +1,6 @@
 import './index.css';
 import reportWebVitals from './reportWebVitals'
-import store from './redux/state'
+import store from './redux/redux-store'
 
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -17,6 +17,6 @@ let renderDom = (state) => {
 
 renderDom(store.getState())
 
-store.subscrube(renderDom)
+store.subscribe(() => renderDom(store.getState()))
 
 reportWebVitals();
