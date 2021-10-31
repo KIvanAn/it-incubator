@@ -36,7 +36,7 @@ export const addPostActionCreator = () => ({type: ADD_POST})
 export const updateNewPostValueActionCreator = (newPost) => {
     return {
         type: UPDATE_NEW_POST_VALUE,
-        value: newPost.current.value,
+        value: newPost,
     }
 }
 

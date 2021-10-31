@@ -2,20 +2,20 @@ import classes from './Dialogs.module.css'
 import DialogsItem from './dialogsitem/DialogsItem'
 import Message from './message/Message'
 import React from 'react'
-import {sendMessageActionCreator, updateNewMessageTextActionCreator} from '../../redux/dialogs-reducer'
 
 const Dialogs = (props) => {
-    const dialogsElements = props.state.dialogs.map((dialog, i) => <DialogsItem id={dialog.id} name={dialog.name}
-                                                                                key={i}/>)
-    const messagesElements = props.state.messages.map((message, i) => <Message id={message.id} message={message.message}
-                                                                               key={i}/>)
+    const dialogsElements = props.dialogsPage.dialogs.map((dialog, i) => <DialogsItem id={dialog.id} name={dialog.name}
+                                                                                      key={i}/>)
+    const messagesElements = props.dialogsPage.messages.map((message, i) => <Message id={message.id}
+                                                                                     message={message.message}
+                                                                                     key={i}/>)
 
     let sendMessage = () => {
-        props.dispatch(sendMessageActionCreator())
+        props.sendMessage()
     }
 
     let updateNewMessageText = (e) => {
-        props.dispatch(updateNewMessageTextActionCreator(e.target.value))
+        props.updateNewMessageText(e.target.value)
     }
 
     return (
@@ -28,7 +28,7 @@ const Dialogs = (props) => {
                 <div>
                     <div>
                         <textarea onChange={updateNewMessageText} placeholder="Enter your message"
-                                  value={props.state.newMessageText}></textarea>
+                                  value={props.newMessageText}></textarea>
                     </div>
                     <div>
                         <button onClick={sendMessage}>Send message</button>
