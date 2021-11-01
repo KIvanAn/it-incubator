@@ -3,9 +3,9 @@ import Post from './post/Post'
 import classes from './Posts.module.css'
 
 const Posts = (props) => {
-    const postsElements = props.posts.map((post, i) => <Post id={post.id} title={post.title}
+    const postsElements = props.posts.map((post) => <Post id={post.id} title={post.title}
                                                              likesCount={post.likesCount}
-                                                             key={i}/>)
+                                                             key={post.id}/>)
     let addPost = () => {
         props.addPost()
     }
