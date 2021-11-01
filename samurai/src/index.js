@@ -1,22 +1,24 @@
 import './index.css';
 import reportWebVitals from './reportWebVitals'
 import store from './redux/redux-store'
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
+import {Provider} from 'react-redux'
 
-let renderDom = (state) => {
+let renderDom = () => {
     ReactDOM.render(
         <React.StrictMode>
-            <App store={store}/>
+            <Provider store={store}>
+                <App />
+            </Provider>
         </React.StrictMode>,
         document.getElementById('root')
     );
 }
 
-renderDom(store.getState())
+renderDom()
 
-store.subscribe(() => renderDom(store.getState()))
+store.subscribe(() => renderDom())
 
 reportWebVitals();

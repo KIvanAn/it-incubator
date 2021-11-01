@@ -1,20 +1,8 @@
-function countSmileys(arr) {
-    let count = 0
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i].includes('D') || arr[i].includes(')')) {
-            if (arr[i].includes(':') || arr[i].includes(';')) {
-                if (arr[i].length === 2) {
-                    count++
-                }
-                if (arr[i].length === 3) {
-                    if (arr[i].includes('-') || arr[i].includes('~')) {
-                        count++
-                    }
-                }
-            }
-        }
-    }
-    return count
+function solve(s) {
+    let alphabet = new Array( 26 ).fill( 1 ).map( ( _, i ) => String.fromCharCode( 97 + i ) )
+    const reducer = (previousValue, currentValue) => previousValue + currentValue
+    let res = s.split(/[aeiou]/).map(el => el.split('').map(el => alphabet.indexOf(el) + 1)).map(el => el.reduce(reducer, 0))
+    return Math.max.apply(null, res)
 }
 
-console.log(countSmileys([':)',':(',':D',':O',':;']))
+console.log(solve("zodiacs"))

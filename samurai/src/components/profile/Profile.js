@@ -1,12 +1,12 @@
-import ProfileInfo from "./profileinfo/ProfileInfo"
-import PostsContainer from "./posts/PostsContainer";
+import ProfileInfo from './profileinfo/ProfileInfo'
+import PostsContainer from './posts/PostsContainer'
 // import classes from './Profile.module.css'
 
-const Profile = (props) => {
+const Profile = () => {
     return (
         <div>
             <ProfileInfo/>
-            <PostsContainer store={props.store}/>
+            <PostsContainer/>
         </div>
     )
 }

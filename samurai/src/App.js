@@ -8,7 +8,7 @@ import Settings from './components/settings/Settings'
 import {BrowserRouter, Route} from 'react-router-dom'
 import DialogsContainer from './components/dialogs/DialogsContainer'
 
-function App(props) {
+function App() {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
@@ -16,9 +16,9 @@ function App(props) {
                 <Navbar/>
                 <div className="app-wrapper-content">
                     <Route path="/profile"
-                           render={() => <Profile store={props.store}/>}/>
+                           render={() => <Profile/>}/>
                     <Route path="/dialogs"
-                           render={() => <DialogsContainer store={props.store}/>}/>
+                           render={() => <DialogsContainer/>}/>
                     <Route path="/news" component={News}/>
                     <Route path="/music" component={Music}/>
                     <Route path="/settings" component={Settings}/>
