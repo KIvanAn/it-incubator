@@ -1,8 +1,12 @@
-function solve(s) {
-    let alphabet = new Array( 26 ).fill( 1 ).map( ( _, i ) => String.fromCharCode( 97 + i ) )
-    const reducer = (previousValue, currentValue) => previousValue + currentValue
-    let res = s.split(/[aeiou]/).map(el => el.split('').map(el => alphabet.indexOf(el) + 1)).map(el => el.reduce(reducer, 0))
-    return Math.max.apply(null, res)
+function solution(number) {
+    let res = 0
+    if (number > 0) {
+        res = Array(number)
+            .fill().map((el, i) => i)
+            .filter((el) => (el % 3 === 0) || (el % 5 === 0))
+            .reduce((a, b) => a + b)
+    }
+    return res
 }
 
-console.log(solve("zodiacs"))
+console.log(solution(0))
