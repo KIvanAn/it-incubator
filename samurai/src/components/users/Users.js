@@ -3,14 +3,17 @@ import * as axios from 'axios'
 import userNoPhoto from '../../assets/images/nophoto-user-image.png'
 
 const Users = (props) => {
-    if (props.users.length === 0) {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
-            .then(response => {
-                props.getUsers(response.data.items)
-            })
+    const getUsers = () => {
+        if (props.users.length === 0) {
+            axios.get('https://social-network.samuraijs.com/api/1.0/users')
+                .then(response => {
+                    props.getUsers(response.data.items)
+                })
+        }
     }
     return (
         <div>
+            <button onClick={getUsers}>Get users</button>
             {props.users.map(user => {
                 return (
                     <div key={user.id} className={classes.user}>
