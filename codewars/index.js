@@ -1,9 +1,9 @@
-function getScore(n) {
-    let res = 0
-    for (let i = 0; i <= n; i++) {
-        res += 50 * i
-    }
-    return res
+function narcissistic(value) {
+    let sum =  String(value)
+        .split('')
+        .map((a, i, arr) => Math.pow(Number(a), arr.length))
+        .reduce((a, b) => a + b)
+    return sum === value
 }
 
-console.log(getScore(5))
+console.log(narcissistic(153))

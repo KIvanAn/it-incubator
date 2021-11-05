@@ -10,3 +10,13 @@
 .avatar img {
     width: 100%;
 }
+.pagination span {
+    padding: 3px 5px;
+    margin: 1px;
+    border: 1px solid cornflowerblue;
+    border-radius: 2px;
+    cursor: pointer;
+}
+.selectedPage {
+    font-weight: bold;
+}
