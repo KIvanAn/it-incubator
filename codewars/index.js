@@ -1,28 +1,21 @@
-// function isPrime(num) {
-//     let divisors = []
-//     for (let i = 1; i <= num; i++) {
-//         if (divisors.length > 2) {
-//             return false
-//         }
-//         if (num % i === 0) {
-//             divisors.push(i)
-//         }
-//     }
-//     return num > 1 && divisors.length === 2
-// }
-
-function isPrime(num) {
-    let divisors = []
-    for (let i = 1; i <= num; i++) {
-        if (divisors.length > 2) {
-            return false
-        }
-        if (num % i === 0) {
-            divisors = [...divisors, i]
-        }
+function findNumber(array) {
+    let arr = array.sort((a, b) => a - b)
+    if (arr[0] !== 1) {
+        return 1
     }
-    return num > 1 && divisors.length === 2
+    if (arr[arr.length - 1] !== arr.length + 1) {
+        return arr.length + 1
+    }
+
+    return req(arr, 2)
 }
 
-console.log(isPrime(3))
-console.log([1,2,3,4,5][-1])
+function req (arr, num) {
+    if (arr[num - 1] === num) {
+        num++
+        return req(arr, num)
+    }
+    return num
+}
+
+console.log(findNumber([1,2,3,5]))
