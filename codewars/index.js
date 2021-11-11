@@ -1,21 +1,9 @@
-function findNumber(array) {
-    let arr = array.sort((a, b) => a - b)
-    if (arr[0] !== 1) {
-        return 1
+function rota(rooms) {
+    if (rooms.length >= 7) {
+        return rooms.sort(() => Math.random() - 0.5).slice(0, 7)
     }
-    if (arr[arr.length - 1] !== arr.length + 1) {
-        return arr.length + 1
-    }
-
-    return req(arr, 2)
+    return [...rooms.sort(() => Math.random() - 0.5), ...rooms.sort(() => Math.random() - 0.5), ...rooms.sort(() => Math.random() - 0.5)].slice(0, 7)
 }
 
-function req (arr, num) {
-    if (arr[num - 1] === num) {
-        num++
-        return req(arr, num)
-    }
-    return num
-}
-
-console.log(findNumber([1,2,3,5]))
+console.log(rota(["One", "Two", "Three", "Four", "Five", "Six", "Seven"]))
+console.log(rota(["One", "Two", "Three"]))
