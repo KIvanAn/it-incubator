@@ -2,6 +2,7 @@ import classes from './Users.module.css'
 import userNoPhoto from '../../assets/images/nophoto-user-image.png'
 import React from 'react'
 import {NavLink} from 'react-router-dom'
+import * as axios from "axios";
 
 const Users = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -34,8 +35,32 @@ const Users = (props) => {
                             <div>
                                 {
                                     !user.followed ?
-                                        <button onClick={() => props.follow(user.id)}>Follow</button> :
-                                        <button onClick={() => props.unfollow(user.id)}>Unfollow</button>
+                                        <button onClick={() => {
+                                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
+                                                withCredentials: true,
+                                                headers: {
+                                                    'API-KEY': '7a4c1432-f97d-4923-8cbb-792295231de4',
+                                                },
+                                            })
+                                                .then(response => {
+                                                    if (response.data.resultCode === 0) {
+                                                        props.follow(user.id)
+                                                    }
+                                                })
+                                        }}>Follow</button> :
+                                        <button onClick={() => {
+                                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
+                                                withCredentials: true,
+                                                headers: {
+                                                    'API-KEY': '7a4c1432-f97d-4923-8cbb-792295231de4',
+                                                },
+                                            })
+                                                .then(response => {
+                                                    if (response.data.resultCode === 0) {
+                                                        props.unfollow(user.id)
+                                                    }
+                                                })
+                                        }}>Unfollow</button>
                                 }
                             </div>
                         </div>
