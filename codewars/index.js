@@ -1,9 +1,13 @@
-function rota(rooms) {
-    if (rooms.length >= 7) {
-        return rooms.sort(() => Math.random() - 0.5).slice(0, 7)
+var isMonotone = function(arr){
+    let res = 0
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] >= res) {
+            res = arr[i]
+        } else {
+            return false
+        }
     }
-    return [...rooms.sort(() => Math.random() - 0.5), ...rooms.sort(() => Math.random() - 0.5), ...rooms.sort(() => Math.random() - 0.5)].slice(0, 7)
+    return true
 }
 
-console.log(rota(["One", "Two", "Three", "Four", "Five", "Six", "Seven"]))
-console.log(rota(["One", "Two", "Three"]))
+console.log(isMonotone([ 95, 94, 93 ]))
