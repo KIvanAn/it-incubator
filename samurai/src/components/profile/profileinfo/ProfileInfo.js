@@ -1,5 +1,6 @@
 import classes from './ProfileInfo.module.css'
 import Preloader from '../../common/preloader/Preloader'
+import userNoPhoto from '../../../assets/images/nophoto-user-image.png'
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -13,7 +14,7 @@ const ProfileInfo = (props) => {
                     alt="banner"/>
             </div>
             <div>
-                <img src={props.profile.photos.large} alt={'avatar'}/>
+                <img src={props.profile.photos.large ? props.profile.photos.large : userNoPhoto} alt={'avatar'}/>
                 <div className={classes.description}>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cumque dolorem laudantium maxime placeat
                     quasi quis rerum unde! Doloremque, incidunt nemo.

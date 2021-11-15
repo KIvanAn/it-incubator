@@ -1,13 +1,7 @@
-var isMonotone = function(arr){
-    let res = 0
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i] >= res) {
-            res = arr[i]
-        } else {
-            return false
-        }
-    }
-    return true
+var moveZeros = function (arr) {
+    let withoutZerosArr = arr.filter(el => el !== 0)
+    let zeroCount = arr.length - withoutZerosArr.length
+    return [...withoutZerosArr, ...Array(zeroCount).fill(0)]
 }
 
-console.log(isMonotone([ 95, 94, 93 ]))
+console.log(moveZeros([false,1,0,1,2,0,1,3,"a"]))

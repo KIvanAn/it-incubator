@@ -19,3 +19,15 @@ export const usersAPI = {
         return axiosInstance.delete(`follow/${userId}`).then(response => response.data)
     },
 }
+
+export const profileAPI = {
+    getProfile (userId) {
+        return axiosInstance.get(`profile/${userId}`)
+    },
+}
+
+export const authAPI = {
+    me () {
+        return axiosInstance.get(`auth/me`)
+    }
+}
