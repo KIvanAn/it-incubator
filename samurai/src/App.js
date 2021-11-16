@@ -8,6 +8,7 @@ import ProfileContainer from './components/profile/ProfileContainer'
 import UsersContainer from './components/users/UsersContainer'
 import HeaderContainer from './components/header/HeaderContainer'
 import {BrowserRouter, Route} from 'react-router-dom'
+import Login from './components/login/Login'
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                     <Route path="/music" component={Music}/>
                     <Route path="/settings" component={Settings}/>
                     <Route path="/users" component={UsersContainer}/>
+                    <Route path="/login" component={Login}/>
                 </div>
             </div>
         </BrowserRouter>
