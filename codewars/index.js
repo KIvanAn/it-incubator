@@ -1,7 +1,12 @@
-var moveZeros = function (arr) {
-    let withoutZerosArr = arr.filter(el => el !== 0)
-    let zeroCount = arr.length - withoutZerosArr.length
-    return [...withoutZerosArr, ...Array(zeroCount).fill(0)]
+function lovefunc(flower1, flower2){
+    return isEven(flower1) + isEven(flower2) === 1
 }
 
-console.log(moveZeros([false,1,0,1,2,0,1,3,"a"]))
+function isEven(number) {
+    if (number % 2 === 0) {
+        return 0
+    }
+    return 1
+}
+// console.log(isEven(779))
+// console.log(lovefunc(521,779))
