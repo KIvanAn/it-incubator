@@ -1,12 +1,13 @@
-function lovefunc(flower1, flower2){
-    return isEven(flower1) + isEven(flower2) === 1
+Array.prototype.sameStructureAs = function (other) {
+    return isArray(other) ? (req(this) === req(other)) : false
 }
 
-function isEven(number) {
-    if (number % 2 === 0) {
-        return 0
-    }
-    return 1
+function req (arr, dip = '-') {
+    return JSON.stringify([].concat(...arr.map((el, i) => isArray(el) ? req(el, dip.repeat(i + 1)) : dip)))
 }
-// console.log(isEven(779))
-// console.log(lovefunc(521,779))
+
+console.log([ 1, [ 1, 1 ] ].sameStructureAs( [ 2, [ 2, 2 ] ] ))
+
+function isArray(arr) {
+    return Array.isArray(arr)
+}
