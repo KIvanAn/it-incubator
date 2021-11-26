@@ -1,14 +1,16 @@
-function solve(str){
-    let replaceArr = str.replace(/\(/g, '').replace(/\)/g, '').split('').reverse()
-    let res = ''
-    for (let i = 0; i < replaceArr.length; i++) {
-        if (Number.isInteger(+replaceArr[i])) {
-            res = res.repeat(+replaceArr[i])
-        } else {
-            res = res + replaceArr[i]
-        }
-    }
-    return res.split('').reverse().join('')
+function speak(name){
+    return "Hello " + name;
 }
 
-console.log(solve("2(a3(b))"))
+Object.prototype.wrap = function (func) {
+    return func.bind(undefined, this)
+}
+
+speak = speak.wrap(function(original, yourName, myName){
+    const greeting = original(yourName);
+    return greeting + ", my name is " + myName;
+})
+
+var greeting = speak("Mary", "Kate");
+
+console.log(greeting)

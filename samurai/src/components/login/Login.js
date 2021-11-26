@@ -1,5 +1,5 @@
 import {Field, reduxForm} from 'redux-form'
-import {Input} from '../common/formControls/FormControls'
+import {FormError, Input} from '../common/formControls/FormControls'
 import {requiredField} from '../../utils/validators'
 import {connect} from 'react-redux'
 import {login} from '../../redux/auth-reducer'
@@ -18,6 +18,7 @@ const LoginForm = (props) => {
                 <Field component={Input} name={'rememberMe'} type="checkbox"/>
                 <span>Remember me</span>
             </div>
+            {props.error && <FormError error={props.error} />}
             <div>
                 <button>Login</button>
             </div>

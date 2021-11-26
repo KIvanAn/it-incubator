@@ -21,3 +21,11 @@ export const Input = (props) => {
     const {input, ...restProps} = props
     return <FormControl {...props}><input {...input} {...restProps}/></FormControl>
 }
+
+export const FormError = (props) => {
+    return (
+        <div className={classes.allErrorsInput}>
+            {props.error}
+        </div>
+    )
+}
