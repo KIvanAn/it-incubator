@@ -1,29 +1,16 @@
-class Num {
-    constructor(num) {
-        this.num = num;
-        this.indt = false
-    }
-    toString() {
-        return "The number is " + this.num;
-    }
-    valueOf() {
-        return {num: this.num};
-    }
+function flatten(...arguments) {
+    return req(arguments)
 }
 
-Num.prototype.valueOf = function valueOf () {
-    this.indt = true
-    return {num: this.num}
-}
-
-Num.prototype.toString = function toString () {
-    if (this.indt) {
-        return this.num
+function req(arr, res = []) {
+    for (let i = 0; i < arr.length; i++) {
+        if (Array.isArray(arr[i])) {
+            req(arr[i], res)
+        } else {
+            res.push(arr[i])
+        }
     }
-    return "The number is " + this.num;
+    return res
 }
 
-console.log(new Num(5))
-console.log(new Num(5) + new Num(5))
-console.log(typeof new Num(150).valueOf().num)
-console.log(new Num(100).toString())
+console.log(flatten(1, [2, 3], 4, 5, [6, [7]]))
