@@ -1,16 +1,17 @@
-function flatten(...arguments) {
-    return req(arguments)
+const beeramid = function(bonus, price) {
+    const countBanks = Math.floor(bonus / price)
+    return req(countBanks, 1, 1, 0)
 }
 
-function req(arr, res = []) {
-    for (let i = 0; i < arr.length; i++) {
-        if (Array.isArray(arr[i])) {
-            req(arr[i], res)
-        } else {
-            res.push(arr[i])
-        }
+function req (countBanks, banks, count, levels, allLevelsBanks = 0) {
+    if (allLevelsBanks < countBanks) {
+        count += 2
+        levels++
+        let newBanks = banks + count
+        allLevelsBanks += newBanks
+        return req(countBanks, newBanks, count, levels, allLevelsBanks)
     }
-    return res
+    return levels
 }
 
-console.log(flatten(1, [2, 3], 4, 5, [6, [7]]))
+console.log(beeramid(5000, 3))
