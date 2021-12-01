@@ -1,6 +1,7 @@
 import Preloader from '../../common/preloader/Preloader'
 import userNoPhoto from '../../../assets/images/nophoto-user-image.png'
-import ProfileStatus from './ProfileStatus'
+// import ProfileStatus from './ProfileStatus'
+import ProfileStatusHooks from './ProfileStatusHooks'
 
 const ProfileInfo = (props) => {
     if (!props.profile) {
@@ -10,7 +11,7 @@ const ProfileInfo = (props) => {
         <div>
             <div>
                 <img src={props.profile.photos.large ? props.profile.photos.large : userNoPhoto} alt={'avatar'}/>
-                <ProfileStatus status={props.status} updateUserStatus={props.updateUserStatus}/>
+                <ProfileStatusHooks status={props.status} updateUserStatus={props.updateUserStatus}/>
             </div>
         </div>
     )
